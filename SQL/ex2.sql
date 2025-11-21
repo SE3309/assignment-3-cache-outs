@@ -17,7 +17,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- 1. PLAYER
 CREATE TABLE `player` (
-  `playerEmail` char(20) NOT NULL,
+  `playerEmail` varchar(50) NOT NULL,
   PRIMARY KEY (`playerEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -29,7 +29,7 @@ CREATE TABLE `dealer` (
 
 -- 3. GAME
 CREATE TABLE `game` (
-  `name` char(15) NOT NULL,
+  `name` varchar(15) NOT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -37,41 +37,42 @@ CREATE TABLE `game` (
 CREATE TABLE `session` (
   `dealerNo` int NOT NULL,
   `dateTime` datetime NOT NULL,
-  `gameName` char(10) NOT NULL,
+  `gameName` varchar(15) NOT NULL,
   PRIMARY KEY (`dealerNo`,`dateTime`),
   UNIQUE KEY `uq_session_datetime_dealerno` (`dateTime`,`dealerNo`),
-  CONSTRAINT `fk_dealerNo` FOREIGN KEY (`dealerNo`) REFERENCES `dealer` (`dealerNo`)
+  CONSTRAINT `fk_dealerNo` FOREIGN KEY (`dealerNo`) REFERENCES `dealer` (`dealerNo`),
+  CONSTRAINT `fk_gameName` FOREIGN KEY (`gameName`) REFERENCES `game` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 5. BET
 CREATE TABLE `bet` (
   `amount` int NOT NULL,
-  `playerEmail` char(25) NOT NULL,
+  `playerEmail` varchar(50) NOT NULL,
   `dateTime` datetime NOT NULL,
   `dealerNo` int NOT NULL,
-  PRIMARY KEY (`playerEmail`,`dateTime`,`dealerNo`),
+  PRIMARY KEY (`playerEmail`,`dateTime`),
   KEY `fk_bet_session` (`dateTime`,`dealerNo`),
   CONSTRAINT `fk_bet_playerEmail` FOREIGN KEY (`playerEmail`) REFERENCES `player` (`playerEmail`),
-  CONSTRAINT `fk_bet_session` FOREIGN KEY (`dateTime`, `dealerNo`) REFERENCES `session` (`dateTime`, `dealerNo`)
+  CONSTRAINT `fk_bet_session` FOREIGN KEY (`dateTime`, `dealerNo`) REFERENCES `session` (`dateTime`, `dealerNo`),
+  CONSTRAINT `fk_bet_dealer` FOREIGN KEY (`dealerNo`) REFERENCES `dealer` (`dealerNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 6. BANS
 CREATE TABLE `bans` (
-  `date` datetime NOT NULL,
-  `banLength` int NOT NULL,
-  `reason` char(25) NOT NULL,
-  `playerEmail` varchar(255) NOT NULL,
-  PRIMARY KEY (`date`),
+  `startDate` date NOT NULL,
+  `endDate` date NOT NULL,
+  `reason` varchar(25) NOT NULL,
+  `playerEmail` varchar(50) NOT NULL,
+  PRIMARY KEY (`playerEmail`,`startDate`),
   KEY `fk_playerEmail` (`playerEmail`),
   CONSTRAINT `fk_playerEmail` FOREIGN KEY (`playerEmail`) REFERENCES `player` (`playerEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 7. TXN
 CREATE TABLE `txn` (
-  `playerEmail` char(20) NOT NULL,
+  `playerEmail` varchar(50) NOT NULL,
   `dateTime` datetime NOT NULL,
   `amount` int NOT NULL,
-  `gameName` char(25) NOT NULL,
   PRIMARY KEY (`playerEmail`,`dateTime`),
   CONSTRAINT `playerEmail` FOREIGN KEY (`playerEmail`) REFERENCES `player` (`playerEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
