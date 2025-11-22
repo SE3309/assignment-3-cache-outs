@@ -1,4 +1,7 @@
 -- Data generation for assignment3
+-- THIS IS USED FOR GENERATING DATA FOR TASK 4
+-- SEE WORD DOC ATTACHED TO SUBMISSION AND SRC/ex4.py FOR MORE DETAILS
+
 USE assignment3;
 
 -- GAMES
