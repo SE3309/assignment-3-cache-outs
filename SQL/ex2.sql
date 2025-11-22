@@ -102,3 +102,11 @@ ON session (gameName);
 
 CREATE INDEX idx_transactions_type
 ON transactions (transactionType);
+
+describe player;
+describe bans;
+describe dealer;
+describe game;
+describe bet;
+describe session;
+describe transactions;

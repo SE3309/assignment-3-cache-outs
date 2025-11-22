@@ -3,13 +3,13 @@ from datetime import datetime, timedelta
 
 # Explanation in Word document attached to submission.
 # ---------- CONFIG ----------
-NUM_GAMES = 3
-NUM_DEALERS = 20          # tens
-NUM_PLAYERS = 400         # hundreds
-NUM_SESSIONS = 300        # hundreds
-NUM_BETS = 5000           # thousands
-NUM_TRANSACTIONS = 5000   # thousands
-NUM_BANS = 40             # tens
+NUM_GAMES = 5
+NUM_DEALERS = 20          
+NUM_PLAYERS = 400         
+NUM_SESSIONS = 300        
+NUM_BETS = 5000           
+NUM_TRANSACTIONS = 5000   
+NUM_BANS = 40             
 
 START_DATE = datetime(2024, 1, 1)
 END_DATE = datetime(2024, 12, 31)
@@ -39,7 +39,7 @@ print("USE assignment3;")
 print()
 
 # 1. GAMES
-base_games = ["Blackjack", "Roulette", "Poker"]
+base_games = ["Blackjack", "Roulette", "Poker", "Baccarat", "Slots"]
 game_names = base_games[:NUM_GAMES]
 
 print("-- GAMES")
@@ -156,7 +156,7 @@ for _ in range(NUM_TRANSACTIONS):
     )
 print()
 
-# 7. BETS
+# 7. BETSF
 print("-- BETS")
 used_bet_keys = set()
 

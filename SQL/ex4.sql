@@ -8,6 +8,9 @@ USE assignment3;
 INSERT INTO game (name, minBet, maxBet, payoutRatio) VALUES ('Blackjack', 20.00, 400.00, 1);
 INSERT INTO game (name, minBet, maxBet, payoutRatio) VALUES ('Roulette', 20.00, 1000.00, 1);
 INSERT INTO game (name, minBet, maxBet, payoutRatio) VALUES ('Poker', 5.00, 100.00, 3);
+INSERT INTO game (name, minBet, maxBet, payoutRatio) VALUES ('Baccarat', 5.00, 250.00, 3);
+INSERT INTO game (name, minBet, maxBet, payoutRatio) VALUES ('Slots', 10.00, 1000.00, 3);
+
 
 -- DEALERS
 INSERT INTO dealer (dealerNo, dealerName) VALUES (1, 'Dealer_1');
