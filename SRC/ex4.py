@@ -156,7 +156,7 @@ for _ in range(NUM_TRANSACTIONS):
     )
 print()
 
-# 7. BETS
+# 7. BETSF
 print("-- BETS")
 used_bet_keys = set()
 
