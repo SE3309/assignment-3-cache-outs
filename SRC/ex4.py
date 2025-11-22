@@ -1,6 +1,7 @@
 import random
 from datetime import datetime, timedelta
 
+# Explanation in Word document attached to submission.
 # ---------- CONFIG ----------
 NUM_GAMES = 3
 NUM_DEALERS = 20          # tens
