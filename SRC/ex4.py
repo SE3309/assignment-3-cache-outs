@@ -39,7 +39,7 @@ print("USE assignment3;")
 print()
 
 # 1. GAMES
-base_games = ["Blackjack", "Roulette", "Poker"]
+base_games = ["Blackjack", "Roulette", "Poker", "Baccarat", "Slots"]
 game_names = base_games[:NUM_GAMES]
 
 print("-- GAMES")
