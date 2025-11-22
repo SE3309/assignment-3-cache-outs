@@ -83,3 +83,22 @@ JOIN game g ON s.gameName = g.name;
 -- FROM v_session_summary
 -- ORDER BY startTime DESC
 -- LIMIT 5;
+
+-- Quries:
+-- INSERT INTO v_player_performance
+-- (playerEmail, username, Balance)
+-- VALUES
+-- ('newguy@email.com', 'newguy', 100.00);
+--
+-- UPDATE v_player_performance
+-- SET winRatePercent = 100
+-- WHERE playerEmail = 'someplayer@email.com';
+--
+-- INSERT INTO v_session_summary
+-- (dealerNo, dealerName, startTime, endTime, gameName, minBet, maxBet, payoutRatio, durationMinutes)
+-- VALUES
+-- (99, 'DealerX', '2025-11-20 18:00:00', '2025-11-20 20:00:00', 'Poker', 5.00, 100.00, 2, 120);
+--
+-- UPDATE v_session_summary
+-- SET dealerName = 'ChangedName'
+-- WHERE dealerNo = 1;
