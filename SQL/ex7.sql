@@ -38,7 +38,7 @@ LEFT JOIN transactions t
     ON p.playerEmail = t.playerEmail
 GROUP BY p.playerEmail, p.username, p.Balance;
 
--- View 2: for looking at dealer 
+-- View 2: for looking at dealer sessions
 CREATE OR REPLACE VIEW v_session_summary AS
 SELECT
     s.dealerNo,
@@ -53,3 +53,33 @@ SELECT
 FROM session s
 JOIN dealer d ON s.dealerNo = d.dealerNo
 JOIN game g ON s.gameName = g.name;
+
+
+-- Player Performance Query
+-- SELECT
+--   username,
+--   Balance,
+--   totalBets,
+--   wins,
+--   losses,
+--   winRatePercent,
+--   totalDeposited,
+--   totalWithdrawn,
+--   isCurrentlyBanned
+-- FROM v_player_performance
+-- ORDER BY winRatePercent DESC, totalBets DESC
+-- LIMIT 5;
+
+
+-- Dealer Sessions Query
+-- SELECT
+--   dealerName,
+--   gameName,
+--   startTime,
+--   endTime,
+--   durationMinutes,
+--   minBet,
+--   maxBet
+-- FROM v_session_summary
+-- ORDER BY startTime DESC
+-- LIMIT 5;
