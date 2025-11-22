@@ -1,5 +1,7 @@
 -- View 1: Player Performance and Cash flow
-CREATE OR REPLACE VIEW v_player_performance AS
+DROP VIEW IF EXISTS v_player_performance;
+
+CREATE VIEW v_player_performance AS
 SELECT
     p.playerEmail,
     p.username,
@@ -39,7 +41,9 @@ LEFT JOIN transactions t
 GROUP BY p.playerEmail, p.username, p.Balance;
 
 -- View 2: for looking at dealer sessions
-CREATE OR REPLACE VIEW v_session_summary AS
+DROP VIEW IF EXISTS v_session_summary;
+
+CREATE VIEW v_session_summary AS
 SELECT
     s.dealerNo,
     d.dealerName,
@@ -49,7 +53,7 @@ SELECT
     g.minBet,
     g.maxBet,
     g.payoutRatio,
-    TIMESTAMPDIFF(MINUTE, s.dateTimePlayed, s.endTime) AS durationMinutes
+    EXTRACT(EPOCH FROM (s.endTime - s.dateTimePlayed)) / 60 AS durationMinutes
 FROM session s
 JOIN dealer d ON s.dealerNo = d.dealerNo
 JOIN game g ON s.gameName = g.name;
@@ -68,7 +72,7 @@ JOIN game g ON s.gameName = g.name;
 --   isCurrentlyBanned
 -- FROM v_player_performance
 -- ORDER BY winRatePercent DESC, totalBets DESC
--- LIMIT 5;
+-- FETCH FIRST 5 ROWS ONLY;
 
 
 -- Dealer Sessions Query
@@ -82,7 +86,7 @@ JOIN game g ON s.gameName = g.name;
 --   maxBet
 -- FROM v_session_summary
 -- ORDER BY startTime DESC
--- LIMIT 5;
+-- FETCH FIRST 5 ROWS ONLY;
 
 -- Quries:
 -- INSERT INTO v_player_performance
